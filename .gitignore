@@ -1,0 +1,11 @@
+# Ignore vim files:
+.*.swp
+.*.swo
+
+# Ignore the build and documentation directories:
+build/
+doc/
+
+# Ignore the jar file:
+cmdline.jar
+

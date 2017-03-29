@@ -1,0 +1,40 @@
+<!--
+	CmdLine - A library for parsing command line arguments
+	(c) Kristian Klomsten Skordal 2017 <kristian.skordal@wafflemail.net>
+	Report bugs and issues on <https://github.com/skordal/cmdline/issues>
+-->
+
+<project name="cmdline" default="compile">
+
+	<!-- Build properties: -->
+	<property name="src.dir" value="src/" />
+	<property name="doc.dir" value="doc/" />
+	<property name="build.dir" value="build/" />
+
+	<target name="init" description="Sets up the build environment">
+		<tstamp />
+		<mkdir dir="${build.dir}" />
+	</target>
+
+	<target name="doc" description="Creates the API documentation">
+		<mkdir dir="${doc.dir}" />
+		<javadoc sourcepath="${src.dir}" destdir="${doc.dir}">
+			<footer>Report bugs and issues on https://github.com/skordal/cmdline/issues</footer>
+		</javadoc>
+	</target>
+
+	<target name="compile" description="Compiles the project" depends="init">
+		<javac srcdir="${src.dir}" destdir="${build.dir}" includeantruntime="false">
+			<compilerarg value="-g" />
+			<compilerarg value="-Xlint" />
+		</javac>
+		<jar destfile="cmdline.jar" basedir="${build.dir}" />
+	</target>
+
+	<target name="clean" description="Cleans the project folder">
+		<delete dir="${build.dir}" />
+		<delete dir="${doc.dir}" />
+	</target>
+
+</project>
+
